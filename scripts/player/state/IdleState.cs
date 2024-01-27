@@ -4,11 +4,11 @@ using System;
 public partial class IdleState : BaseState
 {
 
-	[Export]
-	public StatsComponent statsComponent;
+  [Export]
+  public StatsComponent statsComponent;
 
-    public override void Enter()
-    {
-		statsComponent.Stats.Speed = 0;
-    }
+  public override void Enter()
+  {
+    statsComponent.Stats.Speed = 0;
+  }
 }

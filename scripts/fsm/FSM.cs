@@ -52,15 +52,10 @@ public partial class FSM : Node
 		if (!_states.ContainsKey(key) || _states[key] == _currentState)
 			return;
 		_currentState.Exit();
-		GD.Print("FSM: Exited ");
-		GD.Print(_currentState.Name);
-
 		_currentState = _states[key];
-
 		_currentState.Enter();
 		EmitSignal(SignalName.OnTransition, _currentState);
 
-		GD.Print("FSM: Entered ");
-		GD.Print(_currentState.Name);
+		GD.Print("FSM: " + _currentState.Name);
 	}
 }

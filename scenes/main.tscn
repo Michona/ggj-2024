@@ -1,22 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://g6nyxe0d22lo"]
+[gd_scene load_steps=3 format=3 uid="uid://g6nyxe0d22lo"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_u27mv"]
 [ext_resource type="PackedScene" uid="uid://tox4kk0i8cq7" path="res://scenes/player.tscn" id="2_xftys"]
-[ext_resource type="Texture2D" uid="uid://jkjesordksqh" path="res://assets/ground.tres" id="3_fcrw3"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_u27mv")
 
-[node name="Ground" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(583.25, 408.25)
-scale = Vector2(1167.5, 817.5)
-texture = ExtResource("3_fcrw3")
+[node name="Player_2" parent="." instance=ExtResource("2_xftys")]
+ID = "2"
 
 [node name="Player_1" parent="." instance=ExtResource("2_xftys")]
 position = Vector2(250, 183)
 ID = "1"
-
-[node name="Player_2" parent="." instance=ExtResource("2_xftys")]
-position = Vector2(911, 142)
-ID = "2"

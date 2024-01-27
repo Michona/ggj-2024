@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://tox4kk0i8cq7"]
+[gd_scene load_steps=15 format=3 uid="uid://tox4kk0i8cq7"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.cs" id="1_t2fjc"]
 [ext_resource type="Resource" uid="uid://b7pqnqgha2ka3" path="res://data_resources/res_pstats.tres" id="2_i6g3s"]
@@ -8,14 +8,20 @@
 [ext_resource type="Script" path="res://scripts/fsm/FSM.cs" id="5_nt7dv"]
 [ext_resource type="Script" path="res://scripts/player/state/IdleState.cs" id="6_0oy17"]
 [ext_resource type="Script" path="res://scripts/player/state/MoveState.cs" id="7_aew4h"]
+[ext_resource type="Script" path="res://scripts/player/state/KnockbackState.cs" id="8_0k3by"]
 [ext_resource type="Script" path="res://scripts/player/StatsComponent.cs" id="8_fqo6b"]
+[ext_resource type="Script" path="res://scripts/player/state/ChargeState.cs" id="9_r0isr"]
+[ext_resource type="Script" path="res://scripts/player/ProjectileSpawnerComponent.cs" id="10_5hte0"]
+[ext_resource type="Script" path="res://scripts/player/KnockbackComponent.cs" id="12_d4xic"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5hdq"]
 radius = 91.9239
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="RigidBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
-slide_on_ceiling = false
+gravity_scale = 1.66533e-16
+max_contacts_reported = 10
+contact_monitor = true
 script = ExtResource("1_t2fjc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -44,6 +50,29 @@ script = ExtResource("7_aew4h")
 MoveSpeed = 400
 statsComponent = NodePath("../../StatsComponent")
 
+[node name="Knockback" type="Node" parent="FSMComponent" node_paths=PackedStringArray("statsComponent")]
+script = ExtResource("8_0k3by")
+statsComponent = NodePath("../../StatsComponent")
+
+[node name="Charge" type="Node" parent="FSMComponent" node_paths=PackedStringArray("statsComponent")]
+script = ExtResource("9_r0isr")
+MoveSpeed = 30
+statsComponent = NodePath("../../StatsComponent")
+
 [node name="StatsComponent" type="Node" parent="."]
 script = ExtResource("8_fqo6b")
 Stats = ExtResource("2_i6g3s")
+
+[node name="ProjectileSpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("statsComponent", "fsm", "knockbackComponent")]
+script = ExtResource("10_5hte0")
+statsComponent = NodePath("../StatsComponent")
+fsm = NodePath("../FSMComponent")
+knockbackComponent = NodePath("../KnockbackComponent")
+
+[node name="KnockbackComponent" type="Node" parent="." node_paths=PackedStringArray("fsm", "statsComponent")]
+script = ExtResource("12_d4xic")
+fsm = NodePath("../FSMComponent")
+statsComponent = NodePath("../StatsComponent")
+
+[node name="LifecycleTimer" type="Timer" parent="KnockbackComponent"]
+wait_time = 0.5

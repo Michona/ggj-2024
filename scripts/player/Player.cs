@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
+public partial class Player : RigidBody2D
 {
 	[Export]
 	public string ID;
@@ -18,12 +18,29 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 velocity = Velocity;
+		// Update stats position
+		stats.Position = Position;
 
-		velocity.X = stats.Direction.X * stats.Speed;
-		velocity.Y = stats.Direction.Y * stats.Speed;
+		// // Set vector velocity
+		// Vector2 velocity = Velocity;
+		// velocity.X = stats.MoveDirection.X * stats.Speed;
+		// velocity.Y = stats.MoveDirection.Y * stats.Speed;
+		// Velocity = velocity;
 
-		Velocity = velocity;
-		MoveAndSlide();
+		// Update rotation
+		LookAt(Position + stats.LookDirection);
+
+		// MoveAndSlide();
+	}
+
+	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+	{
+		Vector2 velocity = Vector2.Zero;
+		velocity.X = stats.MoveDirection.X * stats.Speed;
+		velocity.Y = stats.MoveDirection.Y * stats.Speed;
+
+		LinearVelocity = velocity;
+
+		ApplyImpulse(stats.Impulse);
 	}
 }
