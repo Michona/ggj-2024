@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://b7pqnqgha2ka3"]
+
+[ext_resource type="Script" path="res://scripts/data/PStats.cs" id="1_ggbes"]
+
+[resource]
+script = ExtResource("1_ggbes")
+Speed = 200
