@@ -8,9 +8,15 @@
 script = ExtResource("1_u27mv")
 
 [node name="Ground" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(583.25, 408.25)
 scale = Vector2(1167.5, 817.5)
 texture = ExtResource("3_fcrw3")
 
-[node name="Player" parent="." instance=ExtResource("2_xftys")]
-unique_name_in_owner = true
+[node name="Player_1" parent="." instance=ExtResource("2_xftys")]
+position = Vector2(250, 183)
+ID = "1"
+
+[node name="Player_2" parent="." instance=ExtResource("2_xftys")]
+position = Vector2(911, 142)
+ID = "2"

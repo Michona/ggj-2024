@@ -18,7 +18,9 @@ public partial class AnimatedComponent : AnimatedSprite2D
 		if (state is MoveState)
 		{
 			Play("default");
-		} else {
+		}
+		else
+		{
 			Stop();
 		}
 	}

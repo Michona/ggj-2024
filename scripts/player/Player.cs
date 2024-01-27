@@ -3,6 +3,9 @@ using System;
 
 public partial class Player : CharacterBody2D
 {
+	[Export]
+	public string ID;
+
 	private FSM fsm;
 
 	private PStats stats;

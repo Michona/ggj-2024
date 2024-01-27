@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ehpl6wvg2il2" path="res://assets/icon_rotated.svg" id="2_4i230"]
 
 [resource]
+resource_local_to_scene = true
 animations = [{
 "frames": [{
 "duration": 1.0,

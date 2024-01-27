@@ -3,5 +3,5 @@
 [ext_resource type="Script" path="res://scripts/data/PStats.cs" id="1_ggbes"]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource("1_ggbes")
-Speed = 200
