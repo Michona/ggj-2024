@@ -10,6 +10,9 @@ public partial class ProjectileSpawnerComponent : Node
 	public double MaxChargeTime = 2;
 
 	[Export]
+	public int ProjectileSpeed = 800;
+
+	[Export]
 	public StatsComponent statsComponent;
 
 	[Export]
@@ -32,7 +35,10 @@ public partial class ProjectileSpawnerComponent : Node
 	{
 		if (Input.IsActionJustPressed("shoot_" + ID))
 		{
-			fsm.TransitionTo("Charge");
+			if (statsComponent.Stats.LookDirection != Vector2.Zero)
+			{
+				fsm.TransitionTo("Charge");
+			}
 		}
 		if (Input.IsActionPressed("shoot_" + ID))
 		{
@@ -62,21 +68,40 @@ public partial class ProjectileSpawnerComponent : Node
 	{
 		if (fsm.State is ChargeState)
 		{
+			var chargedCoef = MathF.Max(1, (float)chargedTime);
+
 			var projectileInstance = projectile.Instantiate() as JellyProjectile;
-			projectileInstance.Shoot(statsComponent.Stats.Position, statsComponent.Stats.LookDirection);
-			projectileInstance.BodyEntered += (Node body) => {
+			ProjectileType projectileType;
+			if (chargedTime >= 1)
+			{
+				projectileType = ProjectileType.STRONG;
+			}
+			else
+			{
+				projectileType = ProjectileType.MEDIUM;
+			}
+			projectileInstance.Shoot(
+				statsComponent.Stats.Position,
+				statsComponent.Stats.LookDirection,
+				ProjectileSpeed * chargedCoef,
+				projectileType
+			);
+			projectileInstance.BodyEntered += (Node body) =>
+			{
 				OnProjectileCollision(projectileInstance, body);
 			};
 			AddChild(projectileInstance);
 
-			knockbackComponent.OnKnockback(direction: statsComponent.Stats.LookDirection.Rotated(MathF.PI), chargedTime);
+			knockbackComponent.OnKnockback(statsComponent.Stats.LookDirection.Rotated(MathF.PI), chargedCoef);
 
 			chargedTime = 0;
 		}
 	}
 
-	private void OnProjectileCollision(JellyProjectile projectile, Node other) {
-		if (other.IsInGroup("ProjectileDestroyer")) {
+	private void OnProjectileCollision(JellyProjectile projectile, Node other)
+	{
+		if (other.IsInGroup("ProjectileDestroyer"))
+		{
 			projectile.QueueFree();
 		}
 	}

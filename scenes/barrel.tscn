@@ -4,6 +4,7 @@
 radius = 74.027
 
 [node name="Barrel" type="RigidBody2D" groups=["ProjectileDestroyer"]]
+z_index = 1
 position = Vector2(-391, -259)
 mass = 60.0
 gravity_scale = 1.66533e-16

@@ -22,7 +22,7 @@ public partial class PStats : Resource
     public Vector2 MoveDirection { get; set; }
 
     // Normalized
-    public Vector2 LookDirection { get; private set; }
+    public Vector2 LookDirection { get; set; }
 
     public Vector2 Impulse { get; set; }
 

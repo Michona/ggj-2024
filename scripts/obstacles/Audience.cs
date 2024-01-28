@@ -3,6 +3,9 @@ using System;
 
 public partial class Audience : Node2D
 {
+	[Export]
+	public int ProjectileSpeed = 600;
+
 	private PackedScene projectile;
 
 	private Marker2D target;
@@ -26,7 +29,7 @@ public partial class Audience : Node2D
 	private void OnTimeout()
 	{
 		var projectileInstance = projectile.Instantiate() as JellyProjectile;
-		projectileInstance.Shoot(Position, target.Position.Normalized());
+		projectileInstance.Shoot(Position, target.Position.Normalized(), ProjectileSpeed, ProjectileType.MEDIUM);
 		projectileInstance.BodyEntered += (Node body) =>
 		{
 			OnProjectileCollision(projectileInstance, body);

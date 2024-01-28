@@ -20,12 +20,11 @@ public partial class Player : RigidBody2D
 	{
 		// Update stats position
 		stats.Position = Position;
-		stats.SetLookDirection(GetGlobalMousePosition());
+		// stats.SetLookDirection(GetGlobalMousePosition());
 
 		// TODO: Check
 		// Rotation = Mathf.LerpAngle(Rotation, stats.LookDirection.Angle(), 0.9f);
 		// var currentDirection = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
-
 		Rotation = 0;
 		// LookAt(Position + stats.LookDirection);
 	}
@@ -50,12 +49,13 @@ public partial class Player : RigidBody2D
 
 		ApplyImpulse(stats.Impulse);
 
-		for (int i = 0; i < state.GetContactCount(); i++)
-		{
-			var normal = state.GetContactLocalNormal(i);
-			var contactVelocity = state.GetContactLocalVelocityAtPosition(i);
-			GD.Print("NORMAL" + normal);
-			GD.Print("VElo" + contactVelocity);
-		}
+		// TODO: have to do bounce here!
+		// for (int i = 0; i < state.GetContactCount(); i++)
+		// {
+		// 	var normal = state.GetContactLocalNormal(i);
+		// 	var contactVelocity = state.GetContactLocalVelocityAtPosition(i);
+		// 	GD.Print("NORMAL" + normal);
+		// 	GD.Print("VElo" + contactVelocity);
+		// }
 	}
 }

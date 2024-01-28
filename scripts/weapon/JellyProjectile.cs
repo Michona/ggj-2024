@@ -3,21 +3,33 @@ using System;
 
 public partial class JellyProjectile : RigidBody2D
 {
-	// TODO: improve stats here!
+	[Export]
+	public int SpawnDistance = 200;
 
 	[Export]
-	public int Speed = 800;
+	public float ScaleOnStrong = 1.8f;
 
 	private Vector2 _direction = Vector2.Up;
+	private float _speed = 0;
 
-    public void Shoot(Vector2 from, Vector2 direction)
+	public ProjectileType Type;
+
+	public void Shoot(Vector2 from, Vector2 direction, float speed, ProjectileType type)
 	{
-		Position = from + direction * 200;
+		Position = from + direction * SpawnDistance;
 		_direction = direction;
+		_speed = speed;
+		Type = type;
+
+		if (type == ProjectileType.STRONG)
+		{
+			GetNode<Sprite2D>("Sprite2D").Scale *= ScaleOnStrong;
+			GetNode<CollisionShape2D>("CollisionShape2D").Scale *= ScaleOnStrong;
+		}
 	}
 
 	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
 	{
-		LinearVelocity = Speed * _direction;
+		LinearVelocity = _speed * _direction;
 	}
 }

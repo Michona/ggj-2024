@@ -6,6 +6,7 @@
 size = Vector2(210, 456)
 
 [node name="Table" type="StaticBody2D" groups=["ProjectileDestroyer"]]
+z_index = 1
 script = ExtResource("1_fve0m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

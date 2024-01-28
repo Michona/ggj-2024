@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bsphdflwvil7i"]
+
+[ext_resource type="Script" path="res://scripts/blob/Blob.cs" id="1_ixki6"]
+
+[sub_resource type="Curve2D" id="Curve2D_o64bg"]
+resource_local_to_scene = true
+bake_interval = 20.0
+_data = {
+"points": PackedVector2Array(59.6902, 61.0266, -59.6902, -61.0266, -168, 23, -67.7083, 27.1724, 67.7083, -27.1724, -135, -111, -16.0362, -43.654, 16.0362, 43.654, 62, -102, 0, 0, 0, 0, 65.2892, -96.7412, 21.827, -40.5359, -21.827, 40.5359, 53, 83, 61.9175, 25.8361, -61.9175, -25.8361, -97, 147, 0, 0, 0, 0, -163.672, 24.4855, 27.6179, 35.1905, -27.6179, -35.1905, -168, 23)
+}
+point_count = 8
+
+[sub_resource type="Curve2D" id="Curve2D_ojcjr"]
+resource_local_to_scene = true
+bake_interval = 20.0
+_data = {
+"points": PackedVector2Array(-64.5902, 11.5817, 64.5902, -11.5817, -115, -32, -36.5268, 19.5998, 36.5268, -19.5998, -69, -80, -36.9723, -19.1543, 36.9723, 19.1543, 36, -86, 9.79989, -34.2996, -9.79989, 34.2996, 69, -7, 29.3997, -0.890899, -29.3997, 0.890899, -12, 48, 18.2634, 46.7722, -18.2634, -46.7722, -122, 14, 0, 0, 0, 0, -115, -32)
+}
+point_count = 7
+
+[node name="Blob" type="Node2D"]
+script = ExtResource("1_ixki6")
+
+[node name="Path_1" type="Path2D" parent="."]
+position = Vector2(-6, -45.9793)
+scale = Vector2(1, 0.579293)
+curve = SubResource("Curve2D_o64bg")
+
+[node name="Path_2" type="Path2D" parent="."]
+position = Vector2(90, 6)
+curve = SubResource("Curve2D_ojcjr")
+
+[node name="MainPoly" type="Polygon2D" parent="."]
+position = Vector2(1, 0)
+color = Color(0.152941, 0.74902, 0.74902, 1)
+polygon = PackedVector2Array(-75, -32, -32, -63, 78, -43, 79, 36, -27, 86, -61, 13)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]

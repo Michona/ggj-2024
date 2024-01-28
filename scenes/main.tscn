@@ -9,25 +9,31 @@
 
 [sub_resource type="Environment" id="Environment_bxccv"]
 background_mode = 3
-tonemap_mode = 2
+tonemap_mode = 1
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_u27mv")
+Holesterol = PackedInt32Array(10, 10)
 
 [node name="OuterBackground" type="Polygon2D" parent="."]
-position = Vector2(-3078, -2652)
+position = Vector2(-3057, -2888)
 scale = Vector2(467.973, 992.455)
 color = Color(0.729412, 0.639216, 0.6, 1)
 polygon = PackedVector2Array(1.25206, 0.264554, 1.24465, 6.69111, 11.8608, 6.77922, 11.7987, 0.299554)
 
 [node name="Wall" parent="." instance=ExtResource("3_vn1px")]
+position = Vector2(7, 21)
 scale = Vector2(0.8, 0.8)
 
 [node name="Player_2" parent="." groups=["ProjectileDestroyer"] instance=ExtResource("2_xftys")]
+top_level = true
+visibility_layer = 2
 position = Vector2(123, -506)
 ID = "2"
 
 [node name="Player_1" parent="." groups=["ProjectileDestroyer"] instance=ExtResource("2_xftys")]
+top_level = true
+visibility_layer = 2
 position = Vector2(250, 183)
 ID = "1"
 
@@ -35,9 +41,13 @@ ID = "1"
 environment = SubResource("Environment_bxccv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(2, -2)
 zoom = Vector2(0.5, 0.5)
 
 [node name="Barrel" parent="." instance=ExtResource("4_negjb")]
+visibility_layer = 4
+position = Vector2(-388, -259)
+mass = 20.0
 
 [node name="Barrel2" parent="." instance=ExtResource("4_negjb")]
 position = Vector2(900, -259)
@@ -49,9 +59,31 @@ position = Vector2(-317, 543)
 position = Vector2(-911, -65)
 
 [node name="Audience" parent="." instance=ExtResource("6_ammrp")]
-position = Vector2(-921, 718)
+position = Vector2(-908, 724)
 
 [node name="Marker2D" parent="Audience" index="0"]
 position = Vector2(449, -682)
+
+[node name="Health_1" type="ProgressBar" parent="."]
+offset_left = -1372.0
+offset_top = -931.0
+offset_right = -1348.0
+offset_bottom = -798.0
+scale = Vector2(2.32921, 3.72873)
+max_value = 10.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
+
+[node name="Health_2" type="ProgressBar" parent="."]
+offset_left = 1343.0
+offset_top = -969.0
+offset_right = 1367.0
+offset_bottom = -836.0
+scale = Vector2(2.32921, 3.72873)
+max_value = 10.0
+step = 1.0
+fill_mode = 3
+show_percentage = false
 
 [editable path="Audience"]

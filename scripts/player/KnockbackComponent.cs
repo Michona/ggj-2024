@@ -19,10 +19,10 @@ public partial class KnockbackComponent : Node
 		lifecycle.Timeout += OnTimeout;
 	}
 
-	public void OnKnockback(Vector2 direction, double chargedTime)
+	public void OnKnockback(Vector2 direction, float extraStrength)
 	{
 		fsm.TransitionTo("Knockback");
-		statsComponent.Stats.Impulse = direction * statsComponent.Stats.PushStrength * MathF.Max(1, (float)chargedTime);
+		statsComponent.Stats.Impulse = direction * statsComponent.Stats.PushStrength * extraStrength;
 		lifecycle.Start();
 	}
 
