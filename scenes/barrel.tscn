@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcy3smn1psd66"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5agty"]
+radius = 74.027
+
+[node name="Barrel" type="RigidBody2D" groups=["ProjectileDestroyer"]]
+position = Vector2(-391, -259)
+mass = 60.0
+gravity_scale = 1.66533e-16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5agty")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.431373, 0.494118, 0.952941, 1)
+polygon = PackedVector2Array(-56, 0, -52, -47, 8, -57, 50, -24, 60, 31, 14, 61, -37, 45, -64, 24)

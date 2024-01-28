@@ -20,27 +20,42 @@ public partial class Player : RigidBody2D
 	{
 		// Update stats position
 		stats.Position = Position;
+		stats.SetLookDirection(GetGlobalMousePosition());
 
-		// // Set vector velocity
-		// Vector2 velocity = Velocity;
-		// velocity.X = stats.MoveDirection.X * stats.Speed;
-		// velocity.Y = stats.MoveDirection.Y * stats.Speed;
-		// Velocity = velocity;
+		// TODO: Check
+		// Rotation = Mathf.LerpAngle(Rotation, stats.LookDirection.Angle(), 0.9f);
+		// var currentDirection = new Vector2((float)Math.Cos(Rotation), (float)Math.Sin(Rotation));
 
-		// Update rotation
-		LookAt(Position + stats.LookDirection);
-
-		// MoveAndSlide();
+		Rotation = 0;
+		// LookAt(Position + stats.LookDirection);
 	}
 
 	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
 	{
-		Vector2 velocity = Vector2.Zero;
-		velocity.X = stats.MoveDirection.X * stats.Speed;
-		velocity.Y = stats.MoveDirection.Y * stats.Speed;
+		Vector2 velocity = state.LinearVelocity;
 
-		LinearVelocity = velocity;
+		// TODO: check this again!
+		if (stats.MoveDirection.X == 0 && stats.MoveDirection.Y == 0)
+		{
+			velocity.X = Mathf.Lerp(velocity.X, 0, stats.Deceleration);
+			velocity.Y = Mathf.Lerp(velocity.Y, 0, stats.Deceleration);
+		}
+		else
+		{
+			velocity.X = Mathf.Lerp(velocity.X, stats.MoveDirection.X * stats.Speed, stats.Acceleration);
+			velocity.Y = Mathf.Lerp(velocity.Y, stats.MoveDirection.Y * stats.Speed, stats.Acceleration);
+		}
+
+		state.LinearVelocity = velocity;
 
 		ApplyImpulse(stats.Impulse);
+
+		for (int i = 0; i < state.GetContactCount(); i++)
+		{
+			var normal = state.GetContactLocalNormal(i);
+			var contactVelocity = state.GetContactLocalVelocityAtPosition(i);
+			GD.Print("NORMAL" + normal);
+			GD.Print("VElo" + contactVelocity);
+		}
 	}
 }

@@ -15,7 +15,7 @@
 [ext_resource type="Script" path="res://scripts/player/KnockbackComponent.cs" id="12_d4xic"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a5hdq"]
-radius = 91.9239
+radius = 90.2309
 
 [node name="Player" type="RigidBody2D"]
 position = Vector2(2.08165e-12, 2.08165e-12)
@@ -25,10 +25,14 @@ contact_monitor = true
 script = ExtResource("1_t2fjc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 27)
+scale = Vector2(1.5568, -1.46111)
 shape = SubResource("CircleShape2D_a5hdq")
 
 [node name="AnimatedComponent" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("fsm")]
+scale = Vector2(0.680003, 0.680003)
 sprite_frames = ExtResource("3_36jad")
+frame_progress = 0.631039
 script = ExtResource("3_8n71c")
 fsm = NodePath("../FSMComponent")
 
@@ -65,6 +69,7 @@ Stats = ExtResource("2_i6g3s")
 
 [node name="ProjectileSpawnerComponent" type="Node" parent="." node_paths=PackedStringArray("statsComponent", "fsm", "knockbackComponent")]
 script = ExtResource("10_5hte0")
+MaxChargeTime = 1.5
 statsComponent = NodePath("../StatsComponent")
 fsm = NodePath("../FSMComponent")
 knockbackComponent = NodePath("../KnockbackComponent")

@@ -1,14 +1,57 @@
-[gd_scene load_steps=3 format=3 uid="uid://g6nyxe0d22lo"]
+[gd_scene load_steps=8 format=3 uid="uid://g6nyxe0d22lo"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_u27mv"]
 [ext_resource type="PackedScene" uid="uid://tox4kk0i8cq7" path="res://scenes/player.tscn" id="2_xftys"]
+[ext_resource type="PackedScene" uid="uid://tgv60o5c4g7a" path="res://scenes/wall.tscn" id="3_vn1px"]
+[ext_resource type="PackedScene" uid="uid://dcy3smn1psd66" path="res://scenes/barrel.tscn" id="4_negjb"]
+[ext_resource type="PackedScene" uid="uid://vl6h1jy6cjxk" path="res://scenes/table.tscn" id="5_20130"]
+[ext_resource type="PackedScene" uid="uid://dg58tehlxhnw0" path="res://scenes/audience.tscn" id="6_ammrp"]
+
+[sub_resource type="Environment" id="Environment_bxccv"]
+background_mode = 3
+tonemap_mode = 2
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_u27mv")
 
-[node name="Player_2" parent="." instance=ExtResource("2_xftys")]
+[node name="OuterBackground" type="Polygon2D" parent="."]
+position = Vector2(-3078, -2652)
+scale = Vector2(467.973, 992.455)
+color = Color(0.729412, 0.639216, 0.6, 1)
+polygon = PackedVector2Array(1.25206, 0.264554, 1.24465, 6.69111, 11.8608, 6.77922, 11.7987, 0.299554)
+
+[node name="Wall" parent="." instance=ExtResource("3_vn1px")]
+scale = Vector2(0.8, 0.8)
+
+[node name="Player_2" parent="." groups=["ProjectileDestroyer"] instance=ExtResource("2_xftys")]
+position = Vector2(123, -506)
 ID = "2"
 
-[node name="Player_1" parent="." instance=ExtResource("2_xftys")]
+[node name="Player_1" parent="." groups=["ProjectileDestroyer"] instance=ExtResource("2_xftys")]
 position = Vector2(250, 183)
 ID = "1"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bxccv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+
+[node name="Barrel" parent="." instance=ExtResource("4_negjb")]
+
+[node name="Barrel2" parent="." instance=ExtResource("4_negjb")]
+position = Vector2(900, -259)
+
+[node name="Barrel3" parent="." instance=ExtResource("4_negjb")]
+position = Vector2(-317, 543)
+
+[node name="Table" parent="." instance=ExtResource("5_20130")]
+position = Vector2(-911, -65)
+
+[node name="Audience" parent="." instance=ExtResource("6_ammrp")]
+position = Vector2(-921, 718)
+
+[node name="Marker2D" parent="Audience" index="0"]
+position = Vector2(449, -682)
+
+[editable path="Audience"]

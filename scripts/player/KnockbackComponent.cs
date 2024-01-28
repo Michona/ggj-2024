@@ -3,9 +3,6 @@ using System;
 
 public partial class KnockbackComponent : Node
 {
-	[Export]
-	public int PushStrength = 300;
-
 	#region COMPONENTS
 	[Export]
 	public FSM fsm;
@@ -25,10 +22,9 @@ public partial class KnockbackComponent : Node
 	public void OnKnockback(Vector2 direction, double chargedTime)
 	{
 		fsm.TransitionTo("Knockback");
-		statsComponent.Stats.Impulse = direction * PushStrength * MathF.Max(1, (float)chargedTime);
+		statsComponent.Stats.Impulse = direction * statsComponent.Stats.PushStrength * MathF.Max(1, (float)chargedTime);
 		lifecycle.Start();
 	}
-
 
 	private void OnTimeout()
 	{

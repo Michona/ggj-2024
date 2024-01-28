@@ -33,10 +33,6 @@ public partial class InputComponent : Node
 
 		statsComponent.Stats.MoveDirection = direction;
 
-		Vector2 mousePosition = GetViewport().GetMousePosition();
-		statsComponent.Stats.SetLookDirection(mousePosition);
-
-
 		if (fsm.State is not KnockbackState && fsm.State is not ChargeState)
 		{
 			if (direction != Vector2.Zero)
@@ -48,17 +44,5 @@ public partial class InputComponent : Node
 				fsm.TransitionTo("Idle");
 			}
 		}
-	}
-
-	public override void _Input(InputEvent @event)
-	{
-		// // Mouse in viewport coordinates.
-		// if (@event is InputEventMouseButton eventMouseButton)
-		// 	GD.Print("Mouse Click/Unclick at: ", eventMouseButton.Position);
-		// else if (@event is InputEventMouseMotion eventMouseMotion)
-		// 	GD.Print("Mouse Motion at: ", eventMouseMotion.Position);
-
-		// // Print the size of the viewport.
-		// GD.Print("Viewport Resolution is: ", GetViewport().GetVisibleRect().Size);
 	}
 }

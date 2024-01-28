@@ -3,6 +3,8 @@ using System;
 
 public partial class JellyProjectile : RigidBody2D
 {
+	// TODO: improve stats here!
+
 	[Export]
 	public int Speed = 800;
 

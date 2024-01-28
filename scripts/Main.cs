@@ -27,8 +27,12 @@ public partial class Main : Node2D
     {
         if (body is JellyProjectile projectile)
         {
-            player.GetNode<KnockbackComponent>("KnockbackComponent").OnKnockback((player.Position - projectile.Position).Normalized() * 3, 1);
-            projectile.QueueFree();
+            player.GetNode<KnockbackComponent>("KnockbackComponent").OnKnockback((player.Position - projectile.Position).Normalized(), 1);
         }
+
+        // if (body.IsInGroup("BounceOff")) {
+        //     CollisionPolygon2D smth = body.GetNode<CollisionPolygon2D>("");
+        //     smth.Polygon
+        // }
     }
 }

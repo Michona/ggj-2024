@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using System.Runtime.Intrinsics.X86;
 
 public partial class ProjectileSpawnerComponent : Node
@@ -63,11 +64,20 @@ public partial class ProjectileSpawnerComponent : Node
 		{
 			var projectileInstance = projectile.Instantiate() as JellyProjectile;
 			projectileInstance.Shoot(statsComponent.Stats.Position, statsComponent.Stats.LookDirection);
+			projectileInstance.BodyEntered += (Node body) => {
+				OnProjectileCollision(projectileInstance, body);
+			};
 			AddChild(projectileInstance);
 
 			knockbackComponent.OnKnockback(direction: statsComponent.Stats.LookDirection.Rotated(MathF.PI), chargedTime);
 
 			chargedTime = 0;
+		}
+	}
+
+	private void OnProjectileCollision(JellyProjectile projectile, Node other) {
+		if (other.IsInGroup("ProjectileDestroyer")) {
+			projectile.QueueFree();
 		}
 	}
 }

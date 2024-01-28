@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://vl6h1jy6cjxk"]
+
+[ext_resource type="Script" path="res://scripts/obstacles/Table.cs" id="1_fve0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjmlo"]
+size = Vector2(210, 456)
+
+[node name="Table" type="StaticBody2D" groups=["ProjectileDestroyer"]]
+script = ExtResource("1_fve0m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-16, 28)
+shape = SubResource("RectangleShape2D_hjmlo")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.619608, 0.411765, 0.239216, 1)
+polygon = PackedVector2Array(-120, -199, -120, 253, 93, 255, 94, -200)
