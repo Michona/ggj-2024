@@ -68,6 +68,11 @@ public partial class ProjectileSpawnerComponent : Node
 	{
 		if (fsm.State is ChargeState)
 		{
+			// var direction = statsComponent.Stats.LookDirection;
+			// if (direction == Vector2.Zero) {
+			// 	direction = Vector2.Up;
+			// }
+
 			var chargedCoef = MathF.Max(1, (float)chargedTime);
 
 			var projectileInstance = projectile.Instantiate() as JellyProjectile;

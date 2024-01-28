@@ -1,0 +1,22 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://rhuo6mq62b1k"]
+
+[ext_resource type="Texture2D" uid="uid://dr6wcwcv61gmu" path="res://assets/projectile_brocolli.png" id="1_tlhch"]
+[ext_resource type="Texture2D" uid="uid://d0l6wya64pa8g" path="res://assets/projectile_brocolli_2.png" id="2_so4sy"]
+[ext_resource type="Texture2D" uid="uid://ssnwnfeeffsm" path="res://assets/projectile_brocolli_3.png" id="3_2sl3s"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_tlhch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_so4sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2sl3s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

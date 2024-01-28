@@ -1,24 +1,46 @@
-[gd_scene load_steps=8 format=3 uid="uid://g6nyxe0d22lo"]
+[gd_scene load_steps=17 format=3 uid="uid://g6nyxe0d22lo"]
 
 [ext_resource type="Script" path="res://scripts/Main.cs" id="1_u27mv"]
 [ext_resource type="PackedScene" uid="uid://tox4kk0i8cq7" path="res://scenes/player.tscn" id="2_xftys"]
 [ext_resource type="PackedScene" uid="uid://tgv60o5c4g7a" path="res://scenes/wall.tscn" id="3_vn1px"]
 [ext_resource type="PackedScene" uid="uid://dcy3smn1psd66" path="res://scenes/barrel.tscn" id="4_negjb"]
 [ext_resource type="PackedScene" uid="uid://vl6h1jy6cjxk" path="res://scenes/table.tscn" id="5_20130"]
+[ext_resource type="Texture2D" uid="uid://bt0fk4gfeh3qo" path="res://assets/tezga_3.png" id="6_3i8dc"]
 [ext_resource type="PackedScene" uid="uid://dg58tehlxhnw0" path="res://scenes/audience.tscn" id="6_ammrp"]
+[ext_resource type="Texture2D" uid="uid://dl56q2f4652pp" path="res://assets/tezga_2.png" id="6_i52y7"]
+[ext_resource type="Texture2D" uid="uid://d3rbhmo6velmg" path="res://assets/piftijada_logo_V1.png" id="9_4s6ij"]
+[ext_resource type="Texture2D" uid="uid://blxlrf2iof6wb" path="res://assets/radient-glow.png" id="10_3n2q2"]
 
 [sub_resource type="Environment" id="Environment_bxccv"]
 background_mode = 3
-tonemap_mode = 1
+tonemap_mode = 2
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_37mt6"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-152, -158, 164, -158, 154, 223, -148, 225)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_x4sd8"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-174, -159, 178, -148, 162, 211, -136, 223)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_eyd67"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-274, 47, 9, -210, 269, 95, 56, 311)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ni5y0"]
+bg_color = Color(0.980392, 0.960784, 0.941176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dglxu"]
+bg_color = Color(0.741176, 0.898039, 0.388235, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_u27mv")
 Holesterol = PackedInt32Array(10, 10)
 
 [node name="OuterBackground" type="Polygon2D" parent="."]
-position = Vector2(-3057, -2888)
-scale = Vector2(467.973, 992.455)
-color = Color(0.729412, 0.639216, 0.6, 1)
+position = Vector2(-4065.61, -2888)
+scale = Vector2(651.272, 992.455)
+color = Color(0.976471, 0.866667, 0.756863, 1)
 polygon = PackedVector2Array(1.25206, 0.264554, 1.24465, 6.69111, 11.8608, 6.77922, 11.7987, 0.299554)
 
 [node name="Wall" parent="." instance=ExtResource("3_vn1px")]
@@ -41,8 +63,8 @@ ID = "1"
 environment = SubResource("Environment_bxccv")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(2, -2)
-zoom = Vector2(0.5, 0.5)
+position = Vector2(127, -34)
+zoom = Vector2(0.6, 0.6)
 
 [node name="Barrel" parent="." instance=ExtResource("4_negjb")]
 visibility_layer = 4
@@ -50,40 +72,119 @@ position = Vector2(-388, -259)
 mass = 20.0
 
 [node name="Barrel2" parent="." instance=ExtResource("4_negjb")]
-position = Vector2(900, -259)
+position = Vector2(1151, 264)
+
+[node name="Barrel4" parent="." instance=ExtResource("4_negjb")]
+position = Vector2(-683, 880)
 
 [node name="Barrel3" parent="." instance=ExtResource("4_negjb")]
 position = Vector2(-317, 543)
 
+[node name="Barrel5" parent="." instance=ExtResource("4_negjb")]
+position = Vector2(1186, 937)
+
 [node name="Table" parent="." instance=ExtResource("5_20130")]
-position = Vector2(-911, -65)
+position = Vector2(-1027, 604)
+
+[node name="LightOccluder2D" parent="Table" index="2"]
+occluder = SubResource("OccluderPolygon2D_37mt6")
+
+[node name="Table3" parent="." instance=ExtResource("5_20130")]
+position = Vector2(903, -482)
+
+[node name="CollisionShape2D" parent="Table3" index="0"]
+position = Vector2(12.4999, 25.5)
+
+[node name="Sprite2D" parent="Table3" index="1"]
+texture = ExtResource("6_3i8dc")
+
+[node name="LightOccluder2D" parent="Table3" index="2"]
+occluder = SubResource("OccluderPolygon2D_x4sd8")
+
+[node name="Table2" parent="." instance=ExtResource("5_20130")]
+position = Vector2(-828, -331)
+
+[node name="CollisionShape2D" parent="Table2" index="0"]
+position = Vector2(12.0209, 43.1582)
+rotation = 0.765088
+
+[node name="Sprite2D" parent="Table2" index="1"]
+texture = ExtResource("6_i52y7")
+
+[node name="LightOccluder2D" parent="Table2" index="2"]
+occluder = SubResource("OccluderPolygon2D_eyd67")
 
 [node name="Audience" parent="." instance=ExtResource("6_ammrp")]
-position = Vector2(-908, 724)
+position = Vector2(637, 1050)
 
 [node name="Marker2D" parent="Audience" index="0"]
-position = Vector2(449, -682)
+position = Vector2(-334, -1975)
+
+[node name="Audience2" parent="." instance=ExtResource("6_ammrp")]
+position = Vector2(-1309, -82)
+
+[node name="Marker2D" parent="Audience2" index="0"]
+position = Vector2(2288, 1082)
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(-1782, -945)
+color = Color(0.298039, 0.364706, 0.439216, 1)
+antialiased = true
+polygon = PackedVector2Array(-89, -181, -79, 467, 43, 441, 59, -178)
 
 [node name="Health_1" type="ProgressBar" parent="."]
-offset_left = -1372.0
-offset_top = -931.0
-offset_right = -1348.0
-offset_bottom = -798.0
-scale = Vector2(2.32921, 3.72873)
+offset_left = -1832.0
+offset_top = -1105.0
+offset_right = -1808.0
+offset_bottom = -972.0
+scale = Vector2(2.72921, 4.36907)
+theme_override_styles/background = SubResource("StyleBoxFlat_ni5y0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dglxu")
 max_value = 10.0
 step = 1.0
 fill_mode = 3
 show_percentage = false
+
+[node name="Polygon2D2" type="Polygon2D" parent="."]
+position = Vector2(1926, -923)
+color = Color(0.298039, 0.364706, 0.439216, 1)
+antialiased = true
+polygon = PackedVector2Array(-89, -181, -101, 453, 72, 453, 60, -191)
 
 [node name="Health_2" type="ProgressBar" parent="."]
-offset_left = 1343.0
-offset_top = -969.0
-offset_right = 1367.0
-offset_bottom = -836.0
-scale = Vector2(2.32921, 3.72873)
+offset_left = 1876.0
+offset_top = -1073.0
+offset_right = 1900.0
+offset_bottom = -940.0
+scale = Vector2(2.72921, 4.36907)
+theme_override_styles/background = SubResource("StyleBoxFlat_ni5y0")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dglxu")
 max_value = 10.0
 step = 1.0
 fill_mode = 3
 show_percentage = false
 
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(24, -1137)
+texture = ExtResource("9_4s6ij")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(-1727, 123)
+energy = 0.71
+shadow_enabled = true
+texture = ExtResource("10_3n2q2")
+texture_scale = 4.41
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(1527, -927)
+color = Color(0.996078, 0.843137, 0.760784, 1)
+energy = 0.71
+shadow_enabled = true
+texture = ExtResource("10_3n2q2")
+texture_scale = 4.16
+
+[editable path="Table"]
+[editable path="Table3"]
+[editable path="Table2"]
 [editable path="Audience"]
+[editable path="Audience2"]

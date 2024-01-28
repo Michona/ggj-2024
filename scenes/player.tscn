@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://tox4kk0i8cq7"]
+[gd_scene load_steps=23 format=3 uid="uid://tox4kk0i8cq7"]
 
 [ext_resource type="Script" path="res://scripts/player/Player.cs" id="1_t2fjc"]
 [ext_resource type="Resource" uid="uid://b7pqnqgha2ka3" path="res://data_resources/res_pstats.tres" id="2_i6g3s"]
+[ext_resource type="SpriteFrames" uid="uid://b3dthb1wifv0e" path="res://assets/player_1_anim.tres" id="2_ms6t3"]
 [ext_resource type="Script" path="res://scripts/player/AnimatedComponent.cs" id="3_8n71c"]
-[ext_resource type="SpriteFrames" uid="uid://b3dthb1wifv0e" path="res://assets/player_anim.tres" id="3_36jad"]
+[ext_resource type="SpriteFrames" uid="uid://1vr0wa4dej4a" path="res://assets/player_2_anim.tres" id="4_7dxgk"]
 [ext_resource type="Script" path="res://scripts/player/InputComponent.cs" id="4_hhjja"]
 [ext_resource type="Script" path="res://scripts/fsm/FSM.cs" id="5_nt7dv"]
 [ext_resource type="Script" path="res://scripts/player/state/IdleState.cs" id="6_0oy17"]
@@ -48,9 +49,19 @@ position = Vector2(-7, 27)
 scale = Vector2(1.5568, -1.46111)
 shape = SubResource("CircleShape2D_a5hdq")
 
-[node name="AnimatedComponent" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("fsm", "statsComponent")]
+[node name="AnimatedComponent_1" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("fsm", "statsComponent")]
+visible = false
 scale = Vector2(0.680003, 0.680003)
-sprite_frames = ExtResource("3_36jad")
+sprite_frames = ExtResource("2_ms6t3")
+animation = &"charge_up"
+script = ExtResource("3_8n71c")
+fsm = NodePath("../FSMComponent")
+statsComponent = NodePath("../StatsComponent")
+
+[node name="AnimatedComponent_2" type="AnimatedSprite2D" parent="." node_paths=PackedStringArray("fsm", "statsComponent")]
+visible = false
+scale = Vector2(0.680003, 0.680003)
+sprite_frames = ExtResource("4_7dxgk")
 animation = &"charge_up"
 script = ExtResource("3_8n71c")
 fsm = NodePath("../FSMComponent")
@@ -71,7 +82,7 @@ statsComponent = NodePath("../../StatsComponent")
 
 [node name="Move" type="Node" parent="FSMComponent" node_paths=PackedStringArray("statsComponent")]
 script = ExtResource("7_aew4h")
-MoveSpeed = 400
+MoveSpeed = 600
 statsComponent = NodePath("../../StatsComponent")
 
 [node name="Knockback" type="Node" parent="FSMComponent" node_paths=PackedStringArray("statsComponent")]

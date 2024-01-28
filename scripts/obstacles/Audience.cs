@@ -29,6 +29,7 @@ public partial class Audience : Node2D
 	private void OnTimeout()
 	{
 		var projectileInstance = projectile.Instantiate() as JellyProjectile;
+		projectileInstance.AnimationPath = "AnimatedBrocolli";
 		projectileInstance.Shoot(Position, target.Position.Normalized(), ProjectileSpeed, ProjectileType.MEDIUM);
 		projectileInstance.BodyEntered += (Node body) =>
 		{

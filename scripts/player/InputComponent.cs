@@ -35,7 +35,11 @@ public partial class InputComponent : Node
 		}
 
 		statsComponent.Stats.MoveDirection = direction;
-		statsComponent.Stats.LookDirection = lookAt.Normalized();
+		if (lookAt != Vector2.Zero)
+		{
+			statsComponent.Stats.LookDirection = lookAt.Normalized();
+		}
+
 
 		if (fsm.State is not KnockbackState && fsm.State is not ChargeState)
 		{

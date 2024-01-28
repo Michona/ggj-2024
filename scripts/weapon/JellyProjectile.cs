@@ -4,7 +4,7 @@ using System;
 public partial class JellyProjectile : RigidBody2D
 {
 	[Export]
-	public int SpawnDistance = 200;
+	public int SpawnDistance = 400;
 
 	[Export]
 	public float ScaleOnStrong = 1.8f;
@@ -14,8 +14,19 @@ public partial class JellyProjectile : RigidBody2D
 
 	public ProjectileType Type;
 
+	public string AnimationPath = "AnimatedGarlic";
+
+	public override void _Ready()
+	{
+		// GetNode<AnimatedSprite2D>("AnimatedGarlic").Play("default");
+		// GetNode<AnimatedSprite2D>("AnimatedBroccoli").Play("default");
+	}
+
 	public void Shoot(Vector2 from, Vector2 direction, float speed, ProjectileType type)
 	{
+		GetNode<AnimatedSprite2D>(AnimationPath).Visible = true;
+		GetNode<AnimatedSprite2D>(AnimationPath).Play("default");
+
 		Position = from + direction * SpawnDistance;
 		_direction = direction;
 		_speed = speed;
@@ -23,7 +34,7 @@ public partial class JellyProjectile : RigidBody2D
 
 		if (type == ProjectileType.STRONG)
 		{
-			GetNode<Sprite2D>("Sprite2D").Scale *= ScaleOnStrong;
+			GetNode<AnimatedSprite2D>(AnimationPath).Scale *= ScaleOnStrong;
 			GetNode<CollisionShape2D>("CollisionShape2D").Scale *= ScaleOnStrong;
 		}
 	}

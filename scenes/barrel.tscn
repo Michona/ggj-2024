@@ -1,17 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcy3smn1psd66"]
+[gd_scene load_steps=4 format=3 uid="uid://dcy3smn1psd66"]
+
+[ext_resource type="Texture2D" uid="uid://cfvanltjas441" path="res://assets/bure.png" id="1_1gih8"]
+[ext_resource type="Script" path="res://scripts/obstacles/Barrel.cs" id="1_wnfl1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5agty"]
 radius = 74.027
 
 [node name="Barrel" type="RigidBody2D" groups=["ProjectileDestroyer"]]
 z_index = 1
-position = Vector2(-391, -259)
+position = Vector2(2.08165e-12, 2.08165e-12)
 mass = 60.0
 gravity_scale = 1.66533e-16
+script = ExtResource("1_wnfl1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.05132, 1.05132)
 shape = SubResource("CircleShape2D_5agty")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.431373, 0.494118, 0.952941, 1)
-polygon = PackedVector2Array(-56, 0, -52, -47, 8, -57, 50, -24, 60, 31, 14, 61, -37, 45, -64, 24)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.592717, 0.592717)
+texture = ExtResource("1_1gih8")

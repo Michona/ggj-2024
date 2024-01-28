@@ -1,18 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://vl6h1jy6cjxk"]
+[gd_scene load_steps=5 format=3 uid="uid://vl6h1jy6cjxk"]
 
 [ext_resource type="Script" path="res://scripts/obstacles/Table.cs" id="1_fve0m"]
+[ext_resource type="Texture2D" uid="uid://klnyp6ctbhtf" path="res://assets/tezga_1.png" id="2_q3bb1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hjmlo"]
-size = Vector2(210, 456)
+size = Vector2(431.662, 780.456)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_b0gnd"]
+resource_local_to_scene = true
+polygon = PackedVector2Array(-264, -16, 193, -187, 206, 227, 9, 317)
 
 [node name="Table" type="StaticBody2D" groups=["ProjectileDestroyer"]]
 z_index = 1
 script = ExtResource("1_fve0m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-16, 28)
+position = Vector2(-3.5, 32.5)
+scale = Vector2(1.09027, 0.615093)
 shape = SubResource("RectangleShape2D_hjmlo")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.619608, 0.411765, 0.239216, 1)
-polygon = PackedVector2Array(-120, -199, -120, 253, 93, 255, 94, -200)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.54724, 1.54724)
+texture = ExtResource("2_q3bb1")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(-1, 0)
+occluder = SubResource("OccluderPolygon2D_b0gnd")

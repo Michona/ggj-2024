@@ -12,6 +12,7 @@ public partial class Player : RigidBody2D
 
 	public override void _Ready()
 	{
+		GetNode<AnimatedSprite2D>("AnimatedComponent_" + ID).Visible = true;
 		stats = GetNode<StatsComponent>("StatsComponent").Stats;
 		fsm = GetNode<FSM>("FSMComponent");
 	}

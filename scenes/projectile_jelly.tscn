@@ -1,12 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8pdfev5lesab"]
+[gd_scene load_steps=7 format=3 uid="uid://b8pdfev5lesab"]
 
 [ext_resource type="Script" path="res://scripts/weapon/JellyProjectile.cs" id="1_yhorr"]
-[ext_resource type="Texture2D" uid="uid://hfujsobf6w03" path="res://assets/garlic_transp.png" id="2_t2ejn"]
+[ext_resource type="Texture2D" uid="uid://hfujsobf6w03" path="res://assets/garlic_transp.png" id="2_8g6qe"]
+[ext_resource type="Texture2D" uid="uid://dh10lpgkk4d5f" path="res://assets/garlic_transp_rot_2.png" id="3_4k62u"]
+[ext_resource type="SpriteFrames" uid="uid://rhuo6mq62b1k" path="res://projectile_broccoli_anim.tres" id="4_8g6qe"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_won2t"]
-radius = 11.0
+radius = 18.5076
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3gthf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8g6qe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4k62u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="JellyProjectile" type="RigidBody2D"]
+z_index = 1
 position = Vector2(2.08165e-12, 2.08165e-12)
 gravity_scale = 1.66533e-16
 max_contacts_reported = 2
@@ -18,6 +35,15 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 scale = Vector2(2, 1.88)
 shape = SubResource("CircleShape2D_won2t")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.140625, 0.140625)
-texture = ExtResource("2_t2ejn")
+[node name="AnimatedGarlic" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-0.999998, -13)
+scale = Vector2(0.26125, 0.26125)
+sprite_frames = SubResource("SpriteFrames_3gthf")
+speed_scale = 2.0
+
+[node name="AnimatedBrocolli" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(0.301954, 0.301954)
+sprite_frames = ExtResource("4_8g6qe")
+speed_scale = 3.0

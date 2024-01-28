@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bsphdflwvil7i"]
+[gd_scene load_steps=5 format=3 uid="uid://bsphdflwvil7i"]
 
 [ext_resource type="Script" path="res://scripts/blob/Blob.cs" id="1_ixki6"]
 
@@ -18,6 +18,12 @@ _data = {
 }
 point_count = 7
 
+[sub_resource type="Curve2D" id="Curve2D_l72h3"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -105, -46, -41.3657, 21.5668, 41.3657, -21.5668, -67, -136, -30.052, -24.3952, 30.052, 24.3952, 59, -83, 9.54594, -37.4767, -9.54594, 37.4767, 95, 27, 52.6795, 33.5876, -52.6795, -33.5876, -64, 77, 0, 0, 0, 0, -105, -46)
+}
+point_count = 6
+
 [node name="Blob" type="Node2D"]
 script = ExtResource("1_ixki6")
 
@@ -30,9 +36,11 @@ curve = SubResource("Curve2D_o64bg")
 position = Vector2(90, 6)
 curve = SubResource("Curve2D_ojcjr")
 
+[node name="Path_3" type="Path2D" parent="."]
+curve = SubResource("Curve2D_l72h3")
+
 [node name="MainPoly" type="Polygon2D" parent="."]
 position = Vector2(1, 0)
-color = Color(0.152941, 0.74902, 0.74902, 1)
 polygon = PackedVector2Array(-75, -32, -32, -63, 78, -43, 79, 36, -27, 86, -61, 13)
 
 [node name="Timer" type="Timer" parent="."]
